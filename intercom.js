@@ -76,8 +76,11 @@ exports.app = function(config) {
           "body": JSON.stringify(data)
         }
 
+        console.dir 'about to request POST to ' + args.url + ' with data ' args.body
+        
         return request(args, function(e, r, body) {
           if (e) {
+            console.dir 'POST failed with error: ' + JSON.stringify e
             cb(null, null, null);
           } else {
             cb(r.statusCode, body);
@@ -92,9 +95,12 @@ exports.app = function(config) {
           "headers": { "Authorization": sign() },
           "body": JSON.stringify(data)
         }
+        
+        console.dir 'about to request PUT to ' + args.url + ' with data ' args.body
 
         return request(args, function(e, r, body) {
           if (e) {
+            console.dir 'PUT failed with error: ' + JSON.stringify e
             cb(null, null, null);
           } else {
             cb(r.statusCode, body);
